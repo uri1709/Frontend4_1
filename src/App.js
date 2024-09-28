@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import styles from './App.module.css';
 
-const validatePassword = (password, password2) => {
+const validatePasswordAndGetError = (password, password2) => {
 	let newError = null;
 
 	if (password === '' || password2 === '') {
@@ -34,7 +34,7 @@ export const App = () => {
 	const onPasswordChange = ({ target }) => {
 		// console.log('1');
 		setPassword(target.value);
-		const passError = validatePassword(target.value, password2);
+		const passError = validatePasswordAndGetError(target.value, password2);
 
 		// console.log('target.value=', target.value, ' passError=', passError);
 		// console.log(
@@ -43,27 +43,37 @@ export const App = () => {
 		// 	' passError=',
 		// 	passError,
 		// );
+		if (!passError) {
+			console.log('!!!!!!!!', submitButtonRef.current);
+			submitButtonRef.current.disabled = false;
+			submitButtonRef.current.focus();
+		}
 		setPasswordsErrors(passError);
 	};
 
 	const onPasswordBlur = ({ target }) => {
 		// console.log('2');
-		const passError = validatePassword(target.value, password2);
+		// const passError = validatePasswordAndGetError(target.value, password2);
 		// console.log(
 		// 	'onPasswordBlur pass target.value=',
 		// 	target.value,
 		// 	' passError=',
 		// 	passError,
 		// );
-		setPasswordsErrors(passError);
+		// if (!passError) {
+		// 	console.log('!!!!!!!!', submitButtonRef.current);
+		// 	submitButtonRef.current.disabled = false;
+		// 	submitButtonRef.current.focus();
+		// }
+		// setPasswordsErrors(passError);
 	};
 
 	const onPasswordChange2 = ({ target }) => {
 		// console.log('3');
 		setPassword2(target.value);
 
-		const passError = validatePassword(target.value, password);
-		// setPasswordsErrors(validatePassword(target.value, password));
+		const passError = validatePasswordAndGetError(password, target.value);
+		// setPasswordsErrors(validatePasswordAndGetError(target.value, password));
 		// console.log('target.value=', target.value, ' passError=', passError);
 		// console.log(
 		// 	'onPasswordChange2 pass2 target.value=',
@@ -71,6 +81,11 @@ export const App = () => {
 		// 	' passError=',
 		// 	passError,
 		// );
+		// if (!passError) {
+		// 	console.log('!!!!!!!!', submitButtonRef.current);
+		// 	submitButtonRef.current.disabled = false;
+		// 	submitButtonRef.current.focus();
+		// }
 		if (!passError) {
 			console.log('!!!!!!!!', submitButtonRef.current);
 			submitButtonRef.current.disabled = false;
@@ -81,21 +96,20 @@ export const App = () => {
 
 	const onPasswordBlur2 = ({ target }) => {
 		// console.log('4');
-		const passError = validatePassword(target.value, password);
+		// const passError = validatePasswordAndGetError(password, target.value);
 		// console.log(
 		// 	'onPasswordBlur2 pass2 target.value=',
 		// 	target.value,
 		// 	' passError=',
 		// 	passError,
 		// );
-
 		// console.log('submitButtonRef.current.focus()=', !passError);
-		if (!passError) {
-			console.log('!!!!!!!!', submitButtonRef.current);
-			submitButtonRef.current.disabled = false;
-			submitButtonRef.current.focus();
-		}
-		setPasswordsErrors(passError);
+		// if (!passError) {
+		// 	console.log('!!!!!!!!', submitButtonRef.current);
+		// 	submitButtonRef.current.disabled = false;
+		// 	submitButtonRef.current.focus();
+		// }
+		// setPasswordsErrors(passError);
 	};
 
 	const onSubmit = (event) => {
@@ -171,7 +185,7 @@ export const App = () => {
 					ref={submitButtonRef}
 					className={styles['button-submit']}
 					type="submit"
-					disabled={validatePassword(password, password2)}
+					disabled={validatePasswordAndGetError(password, password2)}
 					// disabled={!!passwordsErrors}
 				>
 					Зарегистрироваться
