@@ -1,0 +1,63 @@
+.app {
+	margin: auto;
+	text-align: center;
+}
+
+.title {
+	/* color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 85%); */
+}
+.button-submit {
+	align-self: center;
+	margin: auto;
+	padding: 0.5em 0.75em;
+	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
+	font-size: 18px;
+	transition: background-color 0.15s ease;
+	/* border: none; */
+	/* border: 2px solid hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%); */
+}
+
+.button-submit:hover {
+	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%);
+}
+
+.button-submit:focus {
+	/* background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%); */
+	outline: none;
+	box-shadow: 0 0 0 3px lightskyblue;
+}
+
+.button-submit:disabled {
+	background-color: var(--disabled-color);
+}
+
+.input {
+	/* align-self: center; */
+	border: 2px solid hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
+	height: 30px;
+	width: 100%;
+}
+
+.form {
+	margin: auto;
+	text-align: center;
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	/* gap: 1em; */
+	gap: 10px;
+}
+
+.label {
+	text-align: left;
+	display: block; /* Размещаем метки вертикально */
+	margin-bottom: 5px; /* Отступ между меткой и полем ввода */
+}
+
+.errorLabel {
+	color: var(--error-color);
+}
+
+.form-group {
+	margin-bottom: 15px; /* Отступ между полями */
+}
